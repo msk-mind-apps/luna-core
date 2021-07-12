@@ -9,7 +9,7 @@ def load(stream):
     for stage, job_config in enumerate(pipeline_config['stages']):
         print (f"STAGE {stage}: {job_config['job']}")
         print (json.dumps(job_config, indent=4))
-        method_to_call = getattr(data_processing.transforms , job_config['job'])
+        method_to_call = getattr(luna_core.transforms , job_config['job'])
         pipeline.append ( (method_to_call, job_config) )
 
     return pipeline
