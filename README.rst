@@ -43,7 +43,7 @@ Configuration
 
 ``cp logging.default.yml logging.cfg``
 
-``cp datastore.default.yml datastore.cfg```
+``cp datastore.default.yml datastore.cfg``
 
 
 Credits
