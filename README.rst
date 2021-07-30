@@ -31,9 +31,9 @@ Features
 Configuration
 -------------
 
-- Setup $LUNA_HOME environment variable.
+- Setup $LUNA_HOME environment variable to point to a location where luna configs can be stored.
 - Copy `conf/` folder to $LUNA_HOME/conf
-- Copy `logging.default.yml` to `logging.cfg` and `datastore.default.yml` to `datastore.cfg` and modify the configurations.
+- In the `conf/` folder, copy `logging.default.yml` to `logging.cfg` and `datastore.default.yml` to `datastore.cfg` and modify the configurations.
 
 Credits
 -------
