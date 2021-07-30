@@ -28,6 +28,13 @@ Features
 
 * TODO
 
+Configuration
+-------------
+
+- Setup $LUNA_HOME environment variable.
+- Copy `conf/` folder to $LUNA_HOME/conf
+- Copy `logging.default.yml` to `logging.cfg` and `datastore.default.yml` to `datastore.cfg` and modify the configurations.
+
 Credits
 -------
 
