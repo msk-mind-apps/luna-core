@@ -17,33 +17,28 @@ class MultilineFormatter(logging.Formatter):
         return output
 
 
-def init_logger(filename='data-processing.log', level=logging.WARNING):
+def init_logger(filename='data-processing.log'):
     # Logging configuration
-    log_file = filename
-
-    logger = logging.getLogger()
-    logger.setLevel(logging.DEBUG)
-    formatter = MultilineFormatter('%(asctime)s - %(levelname)s - %(name)s - %(message)s')
-
-    if os.path.exists('conf/logging.cfg'):
-        cfg = ConfigSet(name='LOG_CFG',  config_file='conf/logging.cfg')
+    if os.environ['LUNA_HOME']:
+        cfg = ConfigSet(name='LOG_CFG', config_file=os.path.join(os.environ['LUNA_HOME'], 'conf', 'logging.cfg'))
     else:
-        import luna_core
-        from pathlib import Path
-        dp_path = luna_core.__path__[0]
-        parent_folder = str(Path(dp_path).parent)
-        cfg = ConfigSet(name='LOG_CFG',  config_file=os.path.join(parent_folder, 'conf/logging.default.yml'))
+        raise RuntimeError("$LUNA_HOME is not set. Make sure you have set $LUNA_HOME and $LUNA_HOME/conf/logging.cfg")
+
+    log_file = filename
+    logger = logging.getLogger()
+    logger.setLevel(cfg.get_value('LOG_CFG::LOG_LEVEL'))
+    formatter = MultilineFormatter('%(asctime)s - %(levelname)s - %(name)s - %(message)s')
 
     if not logger.handlers:
         # create console handler with a customizable, higher log level
         ch = logging.StreamHandler()
-        ch.setLevel(level)
+        ch.setLevel(cfg.get_value('LOG_CFG::LOG_LEVEL'))
         ch.setFormatter(formatter)
         logger.addHandler(ch)
 
         # create file handler which logs even debug messages
         fh = RotatingFileHandler(log_file, maxBytes=1e7, backupCount=10)
-        fh.setLevel(logging.DEBUG)
+        fh.setLevel(cfg.get_value('LOG_CFG::LOG_LEVEL'))
         fh.setFormatter(formatter)
         logger.addHandler(fh)
 
@@ -53,7 +48,7 @@ def init_logger(filename='data-processing.log', level=logging.WARNING):
                 host=cfg.get_value('LOG_CFG::MONGO_HOST'),
                 port=cfg.get_value('LOG_CFG::MONGO_PORT'),
                 capped=True )
-            mh.setLevel(logging.WARNING)
+            mh.setLevel(cfg.get_value('LOG_CFG::MONGO_LOG_LEVEL'))
             logger.addHandler(mh)
 
     logger.info("FYI: Initalized logger, log file at: " + log_file + " with handlers: " + str(logger.handlers))
