@@ -99,19 +99,6 @@ def test_get_keys(cfg):
         ConfigSet().get_keys('name_does_not_exist')
 
 
-def test_singleton_with_schema(cfg):
-    schema_file = get_absolute_path(__file__, '../../../luna_core/data_ingestion_template_schema.yml')
-
-    c1 = ConfigSet(name='app_config', config_file='tests/luna_core/common/testdata/test_config.yml')
-    c2 = ConfigSet(name='data_config', config_file='tests/luna_core/common/testdata/test_data_ingestion_template.yml',
-                   schema_file=schema_file)
-
-    assert c1 == c2
-
-    assert c1.get_names() == ['app_config', 'data_config']
-    assert c2.get_names() == ['app_config', 'data_config']
-
-
 def test_invalid_yaml(cfg):
     with pytest.raises(IOError):
         ConfigSet(name='app_config', config_file='tests/luna_core/common/testdata/does_not_exist.yml')
@@ -125,14 +112,3 @@ def test_has_value(cfg):
 
     with pytest.raises(ValueError):
         ConfigSet().has_value('name_does_not_exist::$.spark_application_config[:1]["spark.does.not.exist"]')
-
-def test_clear(cfg):
-    schema_file = get_absolute_path(__file__, '../../../luna_core/data_ingestion_template_schema.yml')
-
-    ConfigSet(name='app_config', config_file='tests/luna_core/common/testdata/test_config.yml')
-    ConfigSet(name='data_config', config_file='tests/luna_core/common/testdata/test_data_ingestion_template.yml',
-                   schema_file=schema_file)
-    c1 = ConfigSet()
-    assert c1.get_names() == ['app_config', 'data_config']
-    c1.clear()
-    assert c1.get_names() == []

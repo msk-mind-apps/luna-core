@@ -11,14 +11,13 @@ logger = logging.getLogger(__name__)
 
 class DataStore_v2:
     def __init__(self, store_location):
-        if os.path.exists('conf/datastore.cfg'):
-            self.params = ConfigSet(name='STORE_CFG',  config_file='conf/datastore.cfg').get_config_set("STORE_CFG")
-        else:
-            import data_processing
-            dp_path = data_processing.__path__[0]
-            parent_folder = str(pathlib.Path(dp_path).parent)
-            self.params = ConfigSet(name='STORE_CFG',  config_file=os.path.join(parent_folder,'conf/datastore.default.yml')) \
+        if os.environ['LUNA_HOME']:
+            self.params = ConfigSet(name='LOG_CFG',
+                                    config_file=os.path.join(os.environ['LUNA_HOME'], 'conf', 'datastore.cfg')) \
                 .get_config_set("STORE_CFG")
+        else:
+            raise RuntimeError(
+                "$LUNA_HOME is not set. Make sure you have set $LUNA_HOME and $LUNA_HOME/conf/datastore.cfg")
         logger.info(f"Configured datastore with {self.params}")
 
         self.backend = store_location

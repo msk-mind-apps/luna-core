@@ -1,5 +1,5 @@
-from luna_core.common.neo4j import GraphDatabase
-from luna_core.common.neo4j import __version__ as neo4j_version
+from neo4j import GraphDatabase
+from neo4j import __version__ as neo4j_version
 
 from pyspark.sql.types import StringType,StructType,StructField
 import re
