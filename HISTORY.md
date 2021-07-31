@@ -4,6 +4,13 @@
 
 ## v0.0.3 (2021-07-30)
 ### Other
+* Cleaning up versions  ([`844ea49`](https://github.com/msk-mind-apps/luna-core/commit/844ea49e80d6ed2fe157bf0f5d605cc2e3d65473))
+* Improve test/prod configs for semantic release  ([`0788e4d`](https://github.com/msk-mind-apps/luna-core/commit/0788e4d615db5a67b657577c4b737a0af895f2e7))
+* 0.0.3 ([`37cfa35`](https://github.com/msk-mind-apps/luna-core/commit/37cfa352d03e39caaa44742f8c913392a84ad1a8))
+* Update changelog docs for sphinx  ([`12c6994`](https://github.com/msk-mind-apps/luna-core/commit/12c69949bfc1144f8f5c22a3086e32aa5edb8276))
+
+## v0.0.3 (2021-07-30)
+### Other
 * Update changelog docs for sphinx  ([`12c6994`](https://github.com/msk-mind-apps/luna-core/commit/12c69949bfc1144f8f5c22a3086e32aa5edb8276))
 
 ## v0.0.2 (2021-07-30)
