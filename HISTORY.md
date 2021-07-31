@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.0.3 (2021-07-30)
+### Other
+* Update changelog docs for sphinx  ([`12c6994`](https://github.com/msk-mind-apps/luna-core/commit/12c69949bfc1144f8f5c22a3086e32aa5edb8276))
+
 ## v0.0.2 (2021-07-30)
 ### Other
 * Update setup cfg for releases  ([389ad24](https://github.com/msk-mind-apps/luna-core/commit/389ad248f315ac6860165b4490adb3ead7372b3b))
