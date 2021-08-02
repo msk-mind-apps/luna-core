@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 class DataStore_v2:
     def __init__(self, store_location):
         if os.environ['LUNA_HOME']:
-            self.params = ConfigSet(name='LOG_CFG',
+            self.params = ConfigSet(name='STORE_CFG',
                                     config_file=os.path.join(os.environ['LUNA_HOME'], 'conf', 'datastore.cfg')) \
                 .get_config_set("STORE_CFG")
         else:
